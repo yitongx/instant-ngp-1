@@ -42,8 +42,13 @@ def parse_args():
 	parser.add_argument("--screenshot_dir", default="", help="Which directory to output screenshots to.")
 	parser.add_argument("--screenshot_spp", type=int, default=16, help="Number of samples per pixel in screenshots.")
 
+<<<<<<< HEAD
 	parser.add_argument("--width", "--screenshot_w", type=int, default=1920, help="Resolution width of GUI and screenshots.")
 	parser.add_argument("--height", "--screenshot_h", type=int, default=1080, help="Resolution height of GUI and screenshots.")
+=======
+	parser.add_argument("--width", "--screenshot_w", type=int, default=0, help="Resolution width of GUI and screenshots.")
+	parser.add_argument("--height", "--screenshot_h", type=int, default=0, help="Resolution height of GUI and screenshots.")
+>>>>>>> 60e98a9 (fix import)
 
 	parser.add_argument("--gui", action="store_true", help="Run the testbed GUI interactively.")
 	parser.add_argument("--train", action="store_true", help="If the GUI is enabled, controls whether training starts immediately.")
