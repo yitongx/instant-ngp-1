@@ -33,7 +33,8 @@ jobs:
     env:
       build_dir: "build"
       config: "Release"
-      TCNN_CUDA_ARCHITECTURES: ${{ matrix.arch }}
+      # TCNN_CUDA_ARCHITECTURES: ${{ matrix.arch }}
+      TCNN_CUDA_ARCHITECTURES: 75
     steps:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install build-essential python3-dev libglfw3-dev libglew-dev libxinerama-dev libxcursor-dev libxi-dev
