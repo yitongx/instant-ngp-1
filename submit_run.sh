@@ -1,1 +1,1 @@
- sbatch --output=./outputs/%j.cmpl --gres=gpu:1 --mem=32G job_run.sh --constraint='pascal'
+ sbatch --output=./outputs/%j.out --gres=gpu:1 --mem=32G job_run.sh --constraint='titan_xp'
