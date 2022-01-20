@@ -1,1 +1,1 @@
- sbatch --output=./outputs/%j.out --gres=gpu:1 --constraint='titan_xp' --mem=32G job_build.sh
+ sbatch --output=./outputs/%j.build --gres=gpu:1 --mem=32G job_build.sh --constraint='titan_xp'
