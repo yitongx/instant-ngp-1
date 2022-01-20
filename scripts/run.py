@@ -10,19 +10,18 @@
 
 import argparse
 import os
-import commentjson as json
-
-import numpy as np
-
 import sys
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
+import commentjson as json
+import numpy as np
 import time
 
 from common import *
 from scenes import scenes_nerf, scenes_image, scenes_sdf, scenes_volume, setup_colored_sdf
-
 from tqdm import tqdm
-
-import pyngp as ngp # noqa
+import build.pyngp as ngp # noqa
 
 
 def parse_args():
@@ -43,11 +42,8 @@ def parse_args():
 	parser.add_argument("--screenshot_dir", default="", help="Which directory to output screenshots to.")
 	parser.add_argument("--screenshot_spp", type=int, default=16, help="Number of samples per pixel in screenshots.")
 
-	parser.add_argument("--save_mesh", default="", help="Output a marching-cubes based mesh from the NeRF or SDF model. Supports OBJ and PLY format.")
-	parser.add_argument("--marching_cubes_res", default=256, type=int, help="Sets the resolution for the marching cubes grid.")
-
-	parser.add_argument("--width", "--screenshot_w", type=int, default=0, help="Resolution width of GUI and screenshots.")
-	parser.add_argument("--height", "--screenshot_h", type=int, default=0, help="Resolution height of GUI and screenshots.")
+	parser.add_argument("--width", "--screenshot_w", type=int, default=1920, help="Resolution width of GUI and screenshots.")
+	parser.add_argument("--height", "--screenshot_h", type=int, default=1080, help="Resolution height of GUI and screenshots.")
 
 	parser.add_argument("--gui", action="store_true", help="Run the testbed GUI interactively.")
 	parser.add_argument("--train", action="store_true", help="If the GUI is enabled, controls whether training starts immediately.")
@@ -280,11 +276,6 @@ if __name__ == "__main__":
 		psnr = totpsnr/(totcount or 1)
 		ssim = totssim/(totcount or 1)
 		print(f"PSNR={psnr} [min={minpsnr} max={maxpsnr}] SSIM={ssim}")
-
-	if args.save_mesh:
-		res = args.marching_cubes_res or 256
-		print(f"Generating mesh via marching cubes and saving to {args.save_mesh}. Resolution=[{res},{res},{res}]")
-		testbed.compute_and_save_marching_cubes_mesh(args.save_mesh, [res, res, res])
 
 	if args.width:
 		if ref_transforms:
